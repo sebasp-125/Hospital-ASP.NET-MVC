@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "IpLL8F0xmLg=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\PERSONAL\\Desktop\\Hospital-ASP.NET-MVC\\App-Web-Hospital-Horizonte\\App-Web-Hospital-Horizonte\\App-Web-Hospital-Horizonte.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PERSONAL\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.11\\microsoft.netcore.app.ref.8.0.11.nupkg.sha512",
+    "C:\\Users\\PERSONAL\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.11\\microsoft.windowsdesktop.app.ref.8.0.11.nupkg.sha512",
+    "C:\\Users\\PERSONAL\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.11\\microsoft.aspnetcore.app.ref.8.0.11.nupkg.sha512",
+    "C:\\Users\\PERSONAL\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.11\\microsoft.netcore.app.host.win-x64.8.0.11.nupkg.sha512"
+  ],
+  "logs": []
+}
