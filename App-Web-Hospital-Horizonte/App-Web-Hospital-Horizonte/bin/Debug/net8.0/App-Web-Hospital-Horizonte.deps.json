@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "App-Web-Hospital-Horizonte/1.0.0": {
+        "runtime": {
+          "App-Web-Hospital-Horizonte.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "App-Web-Hospital-Horizonte/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

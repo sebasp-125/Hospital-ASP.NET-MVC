@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Iniciar Sesion";
+}
+
+<div>
+        <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card p-4 shadow-sm" style="width: 100%; max-width: 400px;">
+            <div class="text-center">
+                <img src="https://www.epssura.com/files/home-2021/header-footer/logo_eps.png" alt="EPS SURA" class="img-fluid mb-3" style="max-height: 50px;">
+                <h3 class="fw-bold">Iniciar sesión</h3>
+                <p class="text-muted">EPS SURA</p>
+            </div>
+            <form>
+                <div class="mb-3">
+                    <label for="tipoIdentificacion" class="form-label">Tipo de identificación</label>
+                    <select class="form-select" id="tipoIdentificacion">
+                        <option selected>Seleccione</option>
+                        <option value="1">Cédula de ciudadanía</option>
+                        <option value="2">Cédula de extranjería</option>
+                        <option value="3">Pasaporte</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="numeroIdentificacion" class="form-label">Número de identificación</label>
+                    <input type="text" class="form-control" id="numeroIdentificacion" placeholder="Ingrese su número">
+                </div>
+                <div class="mb-3">
+                    <label for="contrasena" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="contrasena" placeholder="Ingrese su contraseña">
+                </div>
+                <div class="mb-3 text-end">
+                    <a href="#" class="text-decoration-none">¿Has olvidado tu contraseña?</a>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                </div>
+            </form>
+            <div class="text-center mt-3">
+                <p class="mb-0">¿Aún no tienes una cuenta? <a href="#" class="text-primary text-decoration-none">Crear una cuenta</a></p>
+            </div>
+        </div>
+    </div>
+</div>
