@@ -15,7 +15,10 @@ namespace App_Web_Hospital_Horizonte.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            Querys SentenciasSQl = new Querys();
+            var user = SentenciasSQl.SearchInformation();
+
+            return View(user);
         }
         
         //Loging
