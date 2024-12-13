@@ -29,6 +29,33 @@ namespace App_Web_Hospital_Horizonte.Controllers
             return View();
         }
 
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult RegisterUsuario(RegisterUsuario model)
+        {
+            
+            var usuarioGuardado = model.GuardarUsuario();
+
+            if (usuarioGuardado != null)
+            {
+                    
+                Console.WriteLine("SE HIZO");
+                return RedirectToAction("Index"); 
+            }
+            else
+            {
+                    
+                Console.WriteLine("NO SE HIZO");
+            }
+           
+            
+            return RedirectToAction("Index");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -7,4 +7,8 @@
     <RootNamespace>App_Web_Hospital_Horizonte</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+  </ItemGroup>
+
 </Project>
