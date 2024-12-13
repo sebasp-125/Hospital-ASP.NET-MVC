@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("App-Web-Hospital-Horizonte")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9281ea61c7b2cc78e29ff641fb4b6d778108115b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+19a67c3055504b7668915374a48fcdabf53a3c9b")]
 [assembly: System.Reflection.AssemblyProductAttribute("App-Web-Hospital-Horizonte")]
 [assembly: System.Reflection.AssemblyTitleAttribute("App-Web-Hospital-Horizonte")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -15,10 +15,8 @@ namespace App_Web_Hospital_Horizonte.Controllers
 
         public IActionResult Index()
         {
-            Querys SentenciasSQl = new Querys();
-            var user = SentenciasSQl.SearchInformation();
 
-            return View(user);
+            return View();
         }
         
         //Loging
@@ -31,6 +29,13 @@ namespace App_Web_Hospital_Horizonte.Controllers
         {
             return View();
         }
+
+        //Aterrizaje del Usuario
+        public IActionResult Landing()
+        {
+            return View("Main/Landing"); 
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
