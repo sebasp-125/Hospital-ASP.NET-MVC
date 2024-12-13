@@ -15,6 +15,7 @@ namespace App_Web_Hospital_Horizonte.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
         
@@ -28,6 +29,13 @@ namespace App_Web_Hospital_Horizonte.Controllers
         {
             return View();
         }
+
+        //Aterrizaje del Usuario
+        public IActionResult Landing()
+        {
+            return View("Main/Landing"); 
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
