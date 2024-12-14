@@ -1,3 +1,5 @@
+@model UsuarioViewModel
+
 @{
     ViewData["Title"] = "Eps";
 }
@@ -20,8 +22,9 @@
 
         <!-- Información del usuario -->
         <div class="col-12 text-center mt-4">
-            <p class="fs-4">RUBY PEREZ PEREZ</p>
-            <p class="fs-5">1.022.143.260</p>
+            <p class="fs-4">Nombre Completo: @Model.Nombre @Model.Apellido</p>
+            <p class="fs-5">Correo Electrónico: @Model.Email</p>
+            <p class="fs-5">Cédula: @Model.Identificacion</p>
             <img src="https://cdn-icons-png.flaticon.com/512/4792/4792929.png" class="img-thumbnail mx-auto d-block" alt="..." style="max-width: 150px;">
         </div>
     </div>
