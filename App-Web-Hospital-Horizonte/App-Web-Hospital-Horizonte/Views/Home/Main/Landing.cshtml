@@ -1,3 +1,6 @@
+@model InformationUser
+
+
 @{
     ViewData["Title"] = "Eps";
 }
@@ -19,10 +22,18 @@
         </div>
 
         <!-- Información del usuario -->
-        <div class="col-12 text-center mt-4">
-            <p class="fs-4">RUBY PEREZ PEREZ</p>
-            <p class="fs-5">1.022.143.260</p>
-            <img src="https://cdn-icons-png.flaticon.com/512/4792/4792929.png" class="img-thumbnail mx-auto d-block" alt="..." style="max-width: 150px;">
+        <div class="col-12 text-start mt-4">
+            @if (Model.Genero == "Masculino")
+            {
+                <img src="https://cdn-icons-png.flaticon.com/512/4792/4792929.png" class="img-thumbnail rounded float-end ms-3" alt="..." style="max-width: 150px;">
+            }
+            else
+            {
+                <img src="https://previews.123rf.com/images/djvstock/djvstock1701/djvstock170109009/70085942-perfil-de-la-mujer-sin-rostro-ic%C3%B3nico-dise%C3%B1o-gr%C3%A1fico-de-vector.jpg" class="img-thumbnail rounded float-end ms-3" alt="..." style="max-width: 150px;">
+            }
+            <p class="fs-4 opacity-75 text-primary mb-1">Nombre Completo: <span class="fw-bold">@Model.NombreUsuarioI @Model.ApellidoUsuarioI</span></p>
+            <p class="fs-5 text-secondary mb-1">Correo Electrónico: <span class="fw-light">@Model.EmailUsuarioI</span></p>
+            <p class="fs-5 text-secondary">Cédula: <span class="fw-light">@Model.Identificacion</span></p>
         </div>
     </div>
 
@@ -35,9 +46,13 @@
 
         <div class="collapse mt-3" id="collapseExample">
             <div class="card card-body">
-                <div class="vr">
-                    
-                </div>
+                <p class="fs-5 text-secondary mb-1">Enfermedad: <span class="fw-light">@Model.NombreEnfermedad</span></p>
+
+                <p class="fs-5 text-secondary mb-1">Descripción: <span class="fw-light">@Model.DescripcionEnfermedad</span></p> 
+                <p>Procesos Actuales</p>
+
+                <p class="fs-5 text-secondary mb-1">Telefono: <span class="fw-light">@Model.Telefono</span></p> 
+                <p>Procesos Actuales</p>
             </div>
         </div>
     </div>

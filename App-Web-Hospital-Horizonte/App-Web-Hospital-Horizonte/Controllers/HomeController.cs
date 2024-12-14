@@ -31,20 +31,31 @@ namespace App_Web_Hospital_Horizonte.Controllers
         }
 
         //Aterrizaje del Usuario
-        public IActionResult Landing()
+        public IActionResult Landing(InformationUser usuarioLogin)
         {
-            return View("Main/Landing"); 
+            return View("Main/Landing", usuarioLogin);
         }
         [HttpPost]
         public IActionResult RegisterUsuario(Querys model)
         {
-            var usuarioGuardado = model.GuardarUsuario();
+            model.GuardarUsuario();
             return RedirectToAction("Index");
         }
 
         
         public IActionResult RegisterUsuarioRef() {
             return View("/Views/Home/Register.cshtml");
+        }
+
+        [HttpPost]
+        public IActionResult LoginUsuario(Querys model)
+        {
+            InformationUser usuarioLogin = model.SearchInformation();
+            if(usuarioLogin!=null)
+            {
+                return RedirectToAction("Landing", usuarioLogin);
+            }
+            return RedirectToAction("Login");
         }
 
 

@@ -11,10 +11,10 @@
                 <h3 class="fw-bold">Iniciar sesión</h3>
                 <p class="text-muted">EPS SURA</p>
             </div>
-            <form>
+            <form action="/Home/LoginUsuario" method="post">
                 <div class="mb-3">
                     <label for="tipoIdentificacion" class="form-label">Tipo de identificación</label>
-                    <select class="form-select" id="tipoIdentificacion">
+                    <select class="form-select" id="tipoIdentificacion" name="TipoIdentificacionRef" required>
                         <option selected>Seleccione</option>
                         <option value="1">Cédula de ciudadanía</option>
                         <option value="2">Cédula de extranjería</option>
@@ -23,18 +23,18 @@
                 </div>
                 <div class="mb-3">
                     <label for="numeroIdentificacion" class="form-label">Número de identificación</label>
-                    <input type="text" class="form-control" id="numeroIdentificacion" placeholder="Ingrese su número">
+                    <input type="text" class="form-control" id="numeroIdentificacion" placeholder="Ingrese su número" name="IdentificacionRef" required>
                 </div>
                 <div class="mb-3">
                     <label for="contrasena" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="contrasena" placeholder="Ingrese su contraseña">
+                    <input type="password" class="form-control" id="contrasena" placeholder="Ingrese su contraseña" name="ContrasenaRef" required>
                 </div>
                 <div class="mb-3 text-end">
                     <a href="#" class="text-decoration-none">¿Has olvidado tu contraseña?</a>
                 </div>
-                <div class="d-grid">
-                    <a asp-controller="Home" asp-action="Landing" class="btn btn-primary">Iniciar sesión</a>
-                </div>
+                
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+
                 <div class="text-center mt-3">
                     <p class="mb-0">¿Aún no tienes una cuenta?</p>
                     <a asp-controller="Home" asp-action="RegisterUsuarioRef" class="btn btn-primary">Crear cuentas</a>
