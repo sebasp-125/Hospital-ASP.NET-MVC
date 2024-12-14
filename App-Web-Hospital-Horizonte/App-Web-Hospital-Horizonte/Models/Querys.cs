@@ -2,6 +2,7 @@ using Microsoft.Data.SqlClient;
 
 public class Querys
 {
+    // REGISTRAR NUEVO
     public int TipoIdentificacion { get; set; }
     public int NumeroIdentificacion { get; set; }
     public string Nombre { get; set; }
@@ -13,33 +14,42 @@ public class Querys
     public string Direccion { get; set; }
     public string CorreoElectronico { get; set; }
     public string Contrasena { get; set; }
-    private string _connection = "Server=DESKTOP-CJE8DS1\\SQLEXPRESS;Database=Hospital;Trusted_Connection=True;TrustServerCertificate=True;";
+
+
+    // INICIAR SESION 
+
+    public int TipoIdentificacionRef {get;set;}
+    public int IdentificacionRef {get;set;}
+    public string ContrasenaRef {get;set;}
+// recerda cambiar el servidor de la base de datos
+    private string _connection = "Server=DESKTOP-URHTSV2\\SQLEXPRESS;Database=Hospital;Trusted_Connection=True;TrustServerCertificate=True;";
 
 
     public InformationUser SearchInformation()
     {
         using (SqlConnection conn = new SqlConnection(_connection))
         {
-            string query = @"
-            SELECT * FROM Enfermedades;
-            SELECT U.Nombre, U.Apellido, U.Email, U.EnfermedadID, E.Nombre, E.Descripcion 
-            FROM UsuariosRegistrados U 
-            INNER JOIN Enfermedades E ON U.EnfermedadID = E.EnfermedadID 
-            WHERE U.Dni IS NULL AND U.Contraseña IS NULL;
-            ";
+            string query = "SELECT * FROM UsuariosRegistrados WHERE TipoIdentificacion = @TipoIdentificacion AND Identificacion = @Identificacion AND Contrasena = @Contrasena";
             SqlCommand command = new SqlCommand(query, conn);
+            command.Parameters.AddWithValue("@TipoIdentificacion", TipoIdentificacionRef);
+            command.Parameters.AddWithValue("@Identificacion",IdentificacionRef);
+            command.Parameters.AddWithValue("@Contrasena",ContrasenaRef);
             conn.Open();
+
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 if (reader.Read())
                 {
                     return new InformationUser
                     {
+                        idUsuario = reader["UsuarioID"].ToString(),
                         NombreUsuarioI = reader["Nombre"].ToString(),
                         ApellidoUsuarioI = reader["Apellido"].ToString(),
-                        EmailUsuarioI = reader["Email"].ToString()
+                        EmailUsuarioI = reader["Email"].ToString(),
+                        Identificacion = reader["Identificacion"].ToString()
                     };
                 }
+                
             }
             return null;
         }
@@ -63,7 +73,6 @@ public class Querys
 
                     if (existe > 0)
                     {
-                        Console.WriteLine("HOLI");
                         return null;
                     }
                 }
