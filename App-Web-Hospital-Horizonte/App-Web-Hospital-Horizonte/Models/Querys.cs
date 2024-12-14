@@ -22,7 +22,7 @@ public class Querys
     public int IdentificacionRef {get;set;}
     public string ContrasenaRef {get;set;}
 // recerda cambiar el servidor de la base de datos
-    private string _connection = "Server=DESKTOP-URHTSV2\\SQLEXPRESS;Database=Hospital;Trusted_Connection=True;TrustServerCertificate=True;";
+    private string _connection = "Server=DESKTOP-CJE8DS1\\SQLEXPRESS;Database=Hospital;Trusted_Connection=True;TrustServerCertificate=True;";
 
 
     public InformationUser SearchInformation()

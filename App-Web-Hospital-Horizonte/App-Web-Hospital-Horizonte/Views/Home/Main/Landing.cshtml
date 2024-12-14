@@ -1,5 +1,6 @@
 @model UsuarioViewModel
 
+
 @{
     ViewData["Title"] = "Eps";
 }
@@ -21,11 +22,11 @@
         </div>
 
         <!-- Información del usuario -->
-        <div class="col-12 text-center mt-4">
-            <p class="fs-4">Nombre Completo: @Model.Nombre @Model.Apellido</p>
-            <p class="fs-5">Correo Electrónico: @Model.Email</p>
-            <p class="fs-5">Cédula: @Model.Identificacion</p>
-            <img src="https://cdn-icons-png.flaticon.com/512/4792/4792929.png" class="img-thumbnail mx-auto d-block" alt="..." style="max-width: 150px;">
+        <div class="col-12 text-start mt-4">
+            <img src="https://cdn-icons-png.flaticon.com/512/4792/4792929.png" class="img-thumbnail rounded float-end ms-3" alt="..." style="max-width: 150px;">
+            <p class="fs-4 opacity-75 text-primary mb-1">Nombre Completo: <span class="fw-bold">@Model.Nombre @Model.Apellido</span></p>
+            <p class="fs-5 text-secondary mb-1">Correo Electrónico: <span class="fw-light">@Model.Email</span></p>
+            <p class="fs-5 text-secondary">Cédula: <span class="fw-light">@Model.Identificacion</span></p>
         </div>
     </div>
 
@@ -38,9 +39,8 @@
 
         <div class="collapse mt-3" id="collapseExample">
             <div class="card card-body">
-                <div class="vr">
-                    
-                </div>
+                @* <p class="fs-5 text-secondary mb-1">Fecha de Nacimiento: <span class="fw-light">@Model.DireccionResidencia</span></p> *@
+                <p>Procesos Actuales</p>
             </div>
         </div>
     </div>
