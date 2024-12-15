@@ -1,6 +1,5 @@
 @model InformationUser
 
-
 @{
     ViewData["Title"] = "Eps";
 }
@@ -34,6 +33,11 @@
             <p class="fs-4 opacity-75 text-primary mb-1">Nombre Completo: <span class="fw-bold">@Model.NombreUsuarioI @Model.ApellidoUsuarioI</span></p>
             <p class="fs-5 text-secondary mb-1">Correo Electrónico: <span class="fw-light">@Model.EmailUsuarioI</span></p>
             <p class="fs-5 text-secondary">Cédula: <span class="fw-light">@Model.Identificacion</span></p>
+        <div class="col-12 text-center mt-4">
+            <p class="fs-4">Nombre Completo: @Model.NombreUsuarioI @Model.ApellidoUsuarioI</p>
+            <p class="fs-5">Correo Electrónico: @Model.EmailUsuarioI</p>
+            <p class="fs-5">Cédula: @Model.Identificacion</p>
+            <img src="https://cdn-icons-png.flaticon.com/512/4792/4792929.png" class="img-thumbnail mx-auto d-block" alt="..." style="max-width: 150px;">
         </div>
     </div>
 
