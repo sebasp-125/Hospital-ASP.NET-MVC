@@ -55,7 +55,7 @@ namespace App_Web_Hospital_Horizonte.Controllers
             {
                 return RedirectToAction("Landing", usuarioLogin);
             }
-             return RedirectToAction("Login");
+            return RedirectToAction("Login");
         }
 
 
