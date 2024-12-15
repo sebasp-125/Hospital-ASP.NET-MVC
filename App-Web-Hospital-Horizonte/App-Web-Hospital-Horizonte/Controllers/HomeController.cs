@@ -31,9 +31,9 @@ namespace App_Web_Hospital_Horizonte.Controllers
         }
 
         //Aterrizaje del Usuario
-        public IActionResult Landing(UsuarioViewModel usuarioViewModel)
+        public IActionResult Landing(InformationUser usuarioLogin)
         {
-            return View("Main/Landing", usuarioViewModel);
+            return View("Main/Landing", usuarioLogin);
         }
         [HttpPost]
         public IActionResult RegisterUsuario(Querys model)
@@ -50,19 +50,12 @@ namespace App_Web_Hospital_Horizonte.Controllers
         [HttpPost]
         public IActionResult LoginUsuario(Querys model)
         {
-            var usuarioLogin = model.SearchInformation();
+            InformationUser usuarioLogin = model.SearchInformation();
             if(usuarioLogin!=null)
             {
-                var usuarioViewModel = new UsuarioViewModel
-                {
-                    Nombre = usuarioLogin.NombreUsuarioI,
-                    Apellido = usuarioLogin.ApellidoUsuarioI,
-                    Email = usuarioLogin.EmailUsuarioI,
-                    Identificacion = usuarioLogin.Identificacion
-                };
-                return RedirectToAction("Landing", usuarioViewModel);
+                return RedirectToAction("Landing", usuarioLogin);
             }
-             return RedirectToAction("Login");
+            return RedirectToAction("Login");
         }
 
 

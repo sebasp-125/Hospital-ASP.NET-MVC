@@ -29,7 +29,27 @@ public class Querys
     {
         using (SqlConnection conn = new SqlConnection(_connection))
         {
-            string query = "SELECT * FROM UsuariosRegistrados WHERE TipoIdentificacion = @TipoIdentificacion AND Identificacion = @Identificacion AND Contrasena = @Contrasena";
+            
+            string query = @"SELECT 
+                U.UsuarioID,
+                U.Nombre, 
+                U.Apellido,
+                U.Email,
+                U.Genero,
+                U.Identificacion,
+                U.FechaNacimiento,
+                U.Telefono, 
+                U.Direccion,
+                E.NombreEnfermedad, 
+                E.Descripcion
+            FROM 
+                UsuariosRegistrados U
+            LEFT JOIN Enfermedades E ON U.EnfermedadID = E.EnfermedadID
+            WHERE 
+                U.TipoIdentificacion = TipoIdentificacion 
+                AND Identificacion = @Identificacion 
+                AND Contrasena = @Contrasena;
+            ";
             SqlCommand command = new SqlCommand(query, conn);
             command.Parameters.AddWithValue("@TipoIdentificacion", TipoIdentificacionRef);
             command.Parameters.AddWithValue("@Identificacion",IdentificacionRef);
@@ -46,7 +66,13 @@ public class Querys
                         NombreUsuarioI = reader["Nombre"].ToString(),
                         ApellidoUsuarioI = reader["Apellido"].ToString(),
                         EmailUsuarioI = reader["Email"].ToString(),
-                        Identificacion = reader["Identificacion"].ToString()
+                        Identificacion = reader["Identificacion"].ToString(),
+                        FechaNacimiento = reader["FechaNacimiento"].ToString(),
+                        Telefono = reader["Telefono"].ToString(),
+                        Direccion = reader["Direccion"].ToString(),
+                        NombreEnfermedad = reader["NombreEnfermedad"].ToString(),
+                        DescripcionEnfermedad = reader["Descripcion"].ToString(),
+                        Genero = reader["Genero"].ToString(),
                     };
                 }
                 
@@ -57,7 +83,6 @@ public class Querys
 
     public Querys GuardarUsuario()
     {
-
         try
         {
             using (SqlConnection con = new SqlConnection(_connection))
