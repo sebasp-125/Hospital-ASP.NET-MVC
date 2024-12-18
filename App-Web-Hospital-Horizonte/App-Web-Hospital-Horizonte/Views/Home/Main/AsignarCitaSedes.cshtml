@@ -1,0 +1,69 @@
+@{
+    ViewData["Title"] = "Sedes";
+}
+<style>
+.col-12 img{border-radius:50px ; transition: all 0.2s ease; width: 115px; height: 115px;}
+.col-12 img:hover{filter: saturate(0);border-radius: 45px; transform: scale(1.1);}
+.contenedor-padre{margin-top:5% ;}
+.btn-primary{margin-bottom: 3%; transition: all 0.2s ease; font-weight: bold;}
+.btn-primary:hover{border-radius: 13px;background-color: darkblue;border-color: white;}
+p{color:grey;margin-bottom: 0%;}
+span{font-weight:bolder;color:darkblue;}
+.col-12{transition: all 0.3s ease; border-radius: 15px; padding: 2%; box-sizing: border-box;}
+.col-12:hover{transform: scale(1.05); background-color: lightgray;}
+</style>
+
+
+<div class="container text-center mt-4">
+    <div class="Titulo">
+        <img src="https://static.wixstatic.com/media/c9319c_c8d3e5a82d5f46bab90f4625614ccb4c~mv2.png/v1/fill/w_1046,h_371,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/landscape-image-01.png" alt="Agenda tu turno virtual, en le cual podrás retirar tus medicamentos" style="width:1046px;height:371px;object-fit:cover" width="1046" height="371">
+    </div>
+    <div class="contenedor-padre row align-items-center justify-content-center">
+        <!-- Sedes principales -->
+        <div class="col-12 col-sm-6 col-md-3 mb-3">
+            <img src="https://static.wixstatic.com/media/192fcb_60e40881196a45cca525cfbe276bdc70~mv2.jpg/v1/fill/w_93,h_93,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/imgNiquia.jpg" alt="Sede Farma Niquia" style="object-fit:cover" width="93" height="93">
+            <form action="/Home/AsignarCita" method="post">
+            <button type="submit" name="Sede" value="Centro Sura" class="btn btn-primary w-100">Centro Sura</button>
+            </form>
+            <p><span>Dirección:</span> Calle 49A #63-146</p>
+            <p><span>Horario:</span> Lunes a viernes, de 7:30 a.m. a 5:00 p.m.</p>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-3 mb-3">
+            <img src="https://static.wixstatic.com/media/192fcb_c82938d4fbef4bfeb6d020e4847c40c9~mv2.jpg/v1/fill/w_93,h_93,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/imgApartado.jpg" alt="Sede Farma Apartado" style="object-fit:cover" width="93" height="93">
+            <form action="/Home/AsignarCita" method="post">
+            <button type="submit" name="Sede" value="Sede Poblado" class="btn btn-primary w-100">Sede Poblado</button>
+            </form>
+            <p><span>Dirección:</span> Carrera 30 #10-81.</p>
+            <p><span>Horario:</span> Lunes a viernes, de 7:30 a.m. a 5:00 p.m.</p>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-3 mb-3">
+            <img src="https://static.wixstatic.com/media/192fcb_d4bf24dd418c4cfe88eb95aaa70af134~mv2.jpg/v1/fill/w_93,h_93,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/imgTunja.jpg" alt="Sede Farma Tunja" style="object-fit:cover" width="93" height="93">
+            <form action="/Home/AsignarCita" method="post">
+            <button type="submit" name="Sede" value="Sucursal Almacentro" class="btn btn-primary w-100">Sucursal Almacentro</button>
+            </form>
+            <p><span>Dirección:</span> Carrera 43A #34-95</p>
+            <p><span>Horario:</span> Lunes a viernes, de 7:30 a.m. a 5:00 p.m.</p>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-3 mb-3">
+            <img src="https://static.wixstatic.com/media/192fcb_e04e66a5bf16498ebec30d7d154d32f3~mv2.jpg/v1/fill/w_93,h_93,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/barranquilla.jpg" alt="Sede Farma Barranquilla" style="object-fit:cover" width="93" height="93">
+            <form action="/Home/AsignarCita" method="post">
+            <button type="submit" name="Sede" value="Sucursal Viva Envigado" class="btn btn-primary w-100">Sucursal Viva Envigado</button>
+            </form>
+            <p><span>Dirección:</span> Carrera 48 #32B Sur-139</p>
+            <p><span>Horario:</span> Lunes a viernes, de 7:30 a.m. a 5:00 p.m.</p>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-3 mb-3">
+            <img src="https://static.wixstatic.com/media/192fcb_b9ac61706d1b476f8d3cc3b11f2a68c7~mv2.jpg/v1/fill/w_93,h_93,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/imgCaliSur.jpg" alt="Sede Farma Cali Sur" style="object-fit: cover; object-position: 50% 50%;" width="93" height="93">
+            <form action="/Home/AsignarCita" method="post">
+            <button type="submit" name="Sede" value="Sura Comfama Bello" class="btn btn-primary w-100">Sura Comfama Bello</button>
+            </form>
+            <p><span>Dirección:</span> Cra. 49 # 46–57, Bello, Antioquia</p>
+            <p><span>Horario:</span> Lunes a viernes, de 7:30 a.m. a 5:00 p.m.</p>
+        </div>
+
+    </div>
+</div>
