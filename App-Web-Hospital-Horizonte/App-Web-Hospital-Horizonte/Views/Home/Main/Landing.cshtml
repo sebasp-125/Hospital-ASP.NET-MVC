@@ -1,5 +1,4 @@
-@model InformationUser
-
+@model LandingViewModel
 
 @{
     ViewData["Title"] = "Eps";
@@ -23,7 +22,7 @@
 
         <!-- Información del usuario -->
         <div class="col-12 text-start mt-4">
-            @if (Model.Genero == "Masculino")
+            @if (Model.UsuarioLogin.Genero == "Masculino")
             {
                 <img src="https://cdn-icons-png.flaticon.com/512/4792/4792929.png" class="img-thumbnail rounded float-end ms-3" alt="..." style="max-width: 150px;">
             }
@@ -31,10 +30,22 @@
             {
                 <img src="https://previews.123rf.com/images/djvstock/djvstock1701/djvstock170109009/70085942-perfil-de-la-mujer-sin-rostro-ic%C3%B3nico-dise%C3%B1o-gr%C3%A1fico-de-vector.jpg" class="img-thumbnail rounded float-end ms-3" alt="..." style="max-width: 150px;">
             }
-            <p class="fs-4 opacity-75 text-primary mb-1">Nombre Completo: <span class="fw-bold">@Model.NombreUsuarioI @Model.ApellidoUsuarioI</span></p>
-            <p class="fs-5 text-secondary mb-1">Correo Electrónico: <span class="fw-light">@Model.EmailUsuarioI</span></p>
-            <p class="fs-5 text-secondary">Cédula: <span class="fw-light">@Model.Identificacion</span></p>
-        </div>
+            <p class="fs-4 opacity-75 text-primary mb-1">Nombre Completo: <span class="fw-bold">@Model.UsuarioLogin.NombreUsuarioI @Model.UsuarioLogin.ApellidoUsuarioI</span></p>
+            <p class="fs-5 text-secondary mb-1">Correo Electrónico: <span class="fw-light">@Model.UsuarioLogin.EmailUsuarioI</span></p>
+            <p class="fs-5 text-secondary">Cédula: <span class="fw-light">@Model.UsuarioLogin.Identificacion</span></p>
+    </div>
+
+    <!-- Información medico de familia -->
+    <h2 class="text-center fs-s text-secondary mb-1">Medico de Cabezera</h2>
+        <div class="col-12 text-start mt-4">
+                <img src="https://media.istockphoto.com/id/1225961106/es/vector/doctor-icono-de-l%C3%ADnea-plana-ilustraci%C3%B3n-de-contorno-vectorial-del-m%C3%A9dico-masculino-en-escudo.jpg?s=612x612&w=0&k=20&c=WFssjdTRcxVqidWJDfnIzwyfVHjX7IA1ppAezwRMf14=" class="img-thumbnail rounded float-end ms-3" alt="..." style="max-width: 150px;">
+            <p class="fs-4 opacity-75 text-primary mb-1">Nombre del Medico: <span class="fw-bold">@Model.MedicoDeFamilia.NombreDoctor @Model.MedicoDeFamilia.ApellidoDoctor</span></p>
+            <p class="fs-5 text-secondary mb-1">Correo Electrónico: <span class="fw-light">@Model.MedicoDeFamilia.Email</span></p>
+            <p class="fs-5 text-secondary">Telefono: <span class="fw-light">@Model.MedicoDeFamilia.Telefono</span></p>
+            <p class="fs-5 text-secondary">Especialidad: <span class="fw-light">@Model.MedicoDeFamilia.EspecialidadDoctor</span></p>
+            <button class="btn btn-warning">Contactar con @Model.MedicoDeFamilia.NombreDoctor</button>
+            <button class="btn btn-info">Opiniones o reclamos</button>
+
     </div>
 
     <!-- Sección de información colapsable -->
@@ -46,14 +57,18 @@
 
         <div class="collapse mt-3" id="collapseExample">
             <div class="card card-body">
-                <p class="fs-5 text-secondary mb-1">Enfermedad: <span class="fw-light">@Model.NombreEnfermedad</span></p>
+                <h2 class="text-start">Historial de evaluaciónes medicas</h2>
+                @if (Model.UsuarioLogin.NombreEnfermedad != null || Model.UsuarioLogin.DescripcionEnfermedad != null || Model.UsuarioLogin.Telefono != null ){
+                    <h1>No tienes Historial medico</h1>
+                    <h2>Revisa en <a href="gooogle.com">Historiales medicos</a></h2>
+                } else {
+                <p class="fs-5 text-secondary mb-1">Enfermedad: <span class="fw-light">@Model.UsuarioLogin.NombreEnfermedad</span></p>
 
-                <p class="fs-5 text-secondary mb-1">Descripción: <span class="fw-light">@Model.DescripcionEnfermedad</span></p> 
-                <p>Procesos Actuales</p>
+                <p class="fs-5 text-secondary mb-1">Descripción: <span class="fw-light">@Model.UsuarioLogin.DescripcionEnfermedad</span></p> 
 
-                <p class="fs-5 text-secondary mb-1">Telefono: <span class="fw-light">@Model.Telefono</span></p> 
-                <p>Procesos Actuales</p>
+                <p class="fs-5 text-secondary mb-1">Telefono: <span class="fw-light">@Model.UsuarioLogin.Telefono</span></p> 
+                }
             </div>
         </div>
     </div>
-</div>
+</div> 

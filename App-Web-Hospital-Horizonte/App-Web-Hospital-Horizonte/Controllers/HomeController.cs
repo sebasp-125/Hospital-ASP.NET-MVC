@@ -31,10 +31,23 @@ namespace App_Web_Hospital_Horizonte.Controllers
         }
 
         //Aterrizaje del Usuario
-        public IActionResult Landing(InformationUser usuarioLogin)
-        {
-            return View("Main/Landing", usuarioLogin);
-        }
+public IActionResult Landing(InformationUser usuarioLogin)
+{
+    Querys informatioDoctor = new Querys();
+    var listaDoctores = informatioDoctor.Doctores(); // Esto devuelve una lista de los doctores
+
+    Random random = new Random();
+    var MedicoAleatorio = listaDoctores[random.Next(listaDoctores.Count)];
+    var viewModel = new LandingViewModel
+    {
+        UsuarioLogin = usuarioLogin,
+        InformacionDoctores = listaDoctores,
+        MedicoDeFamilia = MedicoAleatorio
+    };
+
+    return View("Main/Landing", viewModel);
+}
+
         [HttpPost]
         public IActionResult RegisterUsuario(Querys model)
         {

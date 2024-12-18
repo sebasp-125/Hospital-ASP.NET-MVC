@@ -9,7 +9,6 @@ public class Querys
     public string Apellido { get; set; }
     public DateTime Fecha { get; set; }
     public string Genero { get; set; }
-
     public int NumeroCelular { get; set; }
     public string Direccion { get; set; }
     public string CorreoElectronico { get; set; }
@@ -75,11 +74,50 @@ public class Querys
                         Genero = reader["Genero"].ToString(),
                     };
                 }
-                
             }
             return null;
         }
     }
+
+    //EXTRAER DOCTOR
+
+    public List<InformatioDoctor> Doctores()
+{
+    var listaDoctores = new List<InformatioDoctor>();
+
+    using (SqlConnection conn = new SqlConnection(_connection))
+    {
+        conn.Open();
+        string query = @"SELECT 
+                            U.Nombre AS NombreMedico,
+                            U.Apellido AS ApellidoMedico,
+                            U.Telefono,
+                            U.Email,
+                            U.DoctorID,
+                            E.Nombre AS EspecialidadMedico
+                        FROM Doctores U
+                        INNER JOIN Especialidades E ON U.EspecialidadID = E.EspecialidadID";
+
+        SqlCommand command = new SqlCommand(query, conn);
+
+        using (SqlDataReader reader = command.ExecuteReader())
+        {
+            while (reader.Read()) 
+            {
+                listaDoctores.Add(new InformatioDoctor
+                {
+                    id = reader["DoctorID"].ToString(),
+                    NombreDoctor = reader["NombreMedico"].ToString(),
+                    ApellidoDoctor = reader["ApellidoMedico"].ToString(),
+                    EspecialidadDoctor = reader["EspecialidadMedico"].ToString(),
+                    Email = reader["Email"].ToString(),
+                    Telefono = reader["Telefono"].ToString()
+                });
+            }
+        }
+    }
+    return listaDoctores; 
+}
 
     public Querys GuardarUsuario()
     {
@@ -130,6 +168,6 @@ public class Querys
             Console.WriteLine("Error en " + ex.Message);
             return null;
         }
-
     }
+
 }
