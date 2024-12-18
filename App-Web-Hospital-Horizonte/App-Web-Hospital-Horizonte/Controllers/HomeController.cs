@@ -31,9 +31,19 @@ namespace App_Web_Hospital_Horizonte.Controllers
         }
 
         //Aterrizaje del Usuario
-        public IActionResult Landing(InformationUser usuarioLogin)
+        public IActionResult Landing()
         {
-            return View("Main/Landing", usuarioLogin);
+            string nombre = HttpContext.Session.GetString("NombreUsuario"); ViewBag.Nombre=nombre;
+            string apellido = HttpContext.Session.GetString("ApellidoUsuario"); ViewBag.Apellido=apellido;
+            string usuarioid = HttpContext.Session.GetString("UsuarioID"); ViewBag.UsuarioID=usuarioid;
+            string correo = HttpContext.Session.GetString("Correo"); ViewBag.Correo=correo;
+            string telefono = HttpContext.Session.GetString("Telefono"); ViewBag.Telefono=telefono;
+            string enfermedad = HttpContext.Session.GetString("Enfermedad"); ViewBag.Enfermedad=enfermedad;
+            string descripcionE = HttpContext.Session.GetString("DescripcionEnfermedad"); ViewBag.DescripcionEnf=descripcionE;
+            string identificacion = HttpContext.Session.GetString("Identificacion"); ViewBag.Identificacion = identificacion;
+            string genero = HttpContext.Session.GetString("Genero"); ViewBag.Genero = genero;
+
+            return View("Main/Landing");
         }
         [HttpPost]
         public IActionResult RegisterUsuario(Querys model)
@@ -53,12 +63,47 @@ namespace App_Web_Hospital_Horizonte.Controllers
             InformationUser usuarioLogin = model.SearchInformation();
             if(usuarioLogin!=null)
             {
-                return RedirectToAction("Landing", usuarioLogin);
+                HttpContext.Session.SetString("NombreUsuario", usuarioLogin.NombreUsuarioI);
+                HttpContext.Session.SetString("ApellidoUsuario", usuarioLogin.ApellidoUsuarioI);
+                HttpContext.Session.SetString("UsuarioID", usuarioLogin.idUsuario);
+                HttpContext.Session.SetString("Correo", usuarioLogin.EmailUsuarioI);
+                HttpContext.Session.SetString("Telefono", usuarioLogin.Telefono);
+                HttpContext.Session.SetString("Enfermedad", usuarioLogin.NombreEnfermedad);
+                HttpContext.Session.SetString("DescripcionEnfermedad", usuarioLogin.DescripcionEnfermedad);
+                HttpContext.Session.SetString("Identificacion", usuarioLogin.Identificacion);
+                HttpContext.Session.SetString("Genero", usuarioLogin.Genero);
+                return RedirectToAction("Landing");
             }
             return RedirectToAction("Login");
         }
 
+        public IActionResult AsignarCitaSedes()
+        {
+            return View("Main/AsignarCitaSedes");
+        }
 
+        [HttpPost]
+        public IActionResult AsignarCita(Querys model)
+        {   
+            ViewData ["Centro"] = model.Sede;
+            HttpContext.Session.SetString("Sede", model.Sede);
+
+            string nombre = HttpContext.Session.GetString("NombreUsuario"); ViewBag.Nombre=nombre;
+            string apellido = HttpContext.Session.GetString("ApellidoUsuario"); ViewBag.Apellido=apellido;
+            string usuarioid = HttpContext.Session.GetString("UsuarioID"); ViewBag.UsuarioID=usuarioid;
+            string correo = HttpContext.Session.GetString("Correo"); ViewBag.Correo=correo;
+            string telefono = HttpContext.Session.GetString("Telefono"); ViewBag.Telefono=telefono;
+            string identificacion = HttpContext.Session.GetString("Identificacion"); ViewBag.Identificacion = identificacion;
+            return View("Main/AsignarCita");
+        }
+
+        public IActionResult CitaAsignada(Querys model)
+        {
+            string sede = HttpContext.Session.GetString("Sede"); 
+            string usuarioid = HttpContext.Session.GetString("UsuarioID");
+            model.AsignarLaCita(sede, usuarioid);
+            return RedirectToAction("Landing");
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

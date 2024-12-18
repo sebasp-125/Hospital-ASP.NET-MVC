@@ -10,7 +10,7 @@ public class Querys
     public DateTime Fecha { get; set; }
     public string Genero { get; set; }
 
-    public int NumeroCelular { get; set; }
+    public string NumeroCelular { get; set; }
     public string Direccion { get; set; }
     public string CorreoElectronico { get; set; }
     public string Contrasena { get; set; }
@@ -21,10 +21,22 @@ public class Querys
     public int TipoIdentificacionRef {get;set;}
     public int IdentificacionRef {get;set;}
     public string ContrasenaRef {get;set;}
-// recerda cambiar el servidor de la base de datos
-    private string _connection = "Server=DESKTOP-CJE8DS1\\SQLEXPRESS;Database=Hospital;Trusted_Connection=True;TrustServerCertificate=True;";
+
+    // ASIGNACION DE CITA
+    public string Sede {get; set;}
+    public string FechaCita {get;set;}
+    public string HoraCita {get;set;}
+
+    public string estado {get;set;}
 
 
+
+// CONEXION A LA BASE DE DATOS
+    private string _connection = "Server=DESKTOP-URHTSV2\\SQLEXPRESS;Database=Hospital;Trusted_Connection=True;TrustServerCertificate=True;";
+
+
+
+// FUNCION PARA TRAER LA INFORMACION DEL USUARIO LOGUEADO
     public InformationUser SearchInformation()
     {
         using (SqlConnection conn = new SqlConnection(_connection))
@@ -81,6 +93,8 @@ public class Querys
         }
     }
 
+
+// FUNCION PARA REGISTRAR UN NUEVO USUARIO EN LA BASE DE DATOS
     public Querys GuardarUsuario()
     {
         try
@@ -132,4 +146,54 @@ public class Querys
         }
 
     }
+
+// FUNCION PARA ASIGNAR UNA CITA A UN USUARIO
+    public bool AsignarLaCita(string Sede, string usuarioid)
+    {
+        try
+        {
+            using (SqlConnection con = new SqlConnection(_connection))
+            {
+                con.Open();
+
+                string verificarCorreo = "SELECT COUNT(*) FROM Citas WHERE UsuarioID = @UsuarioID";
+
+                using (SqlCommand verificarCmd = new SqlCommand(verificarCorreo, con))
+                {
+                    verificarCmd.Parameters.AddWithValue("@UsuarioID", usuarioid);
+                    int existe = (int)verificarCmd.ExecuteScalar();
+
+                    if (existe > 0)
+                    {
+                        return false;
+                    }
+                }
+
+                this.estado = "Asignada";
+                string query = "insert into Citas (UsuarioID, FechaHora, Estado, Sede) " +
+                "VALUES (@UsuarioID, @FechaHora, @Estado, @Sede)";
+                
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@UsuarioID", int.Parse(usuarioid));
+                    cmd.Parameters.AddWithValue("@FechaHora", (this.FechaCita,this.HoraCita).ToString());
+                    cmd.Parameters.AddWithValue("@Estado", this.estado);
+                    cmd.Parameters.AddWithValue("@Sede", Sede);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            Console.WriteLine("Se hizo!");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error en " + ex.Message);
+            Console.WriteLine("No Se hizo!");
+            return false;
+        }
+
+
+    }
+
 }

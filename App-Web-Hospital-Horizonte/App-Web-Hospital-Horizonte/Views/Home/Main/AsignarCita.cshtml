@@ -1,0 +1,396 @@
+@{
+    ViewData["Title"] = "Asigna Tu Cita";
+    //@ViewData["userid"];
+}
+
+<style>
+h1{font-size: 50px; color: darkblue;margin-bottom: 2%;}
+h2{font-size: 30px;margin-bottom: 1%;}
+p{color:grey; margin:0%}
+
+h3 {
+  font-weight: 600;
+}
+
+.calendar-father {
+  display: flex;
+  flex-direction: column;
+
+  font-family: Poppins, sans-serif;
+  
+}
+.calendar {
+  margin: 0 auto;
+  width: clamp(320px, 400px, 90%);
+  padding: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.calendar header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.calendar nav {
+  display: flex;
+  align-items: center;
+}
+.calendar ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.calendar ul li {
+  width: calc(100% / 7);
+  position: relative;
+  z-index: 2;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#prev,
+#next {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+.dates li:not(.inactive) {
+  cursor: pointer;
+}
+.dates li:not(.inactive):hover {
+  background-color: rgb(221, 221, 221);
+  border-radius: 50px;
+}
+
+.dates li:not(.inactive):active{
+  background-color: #a8a5a5;
+}
+#prev::before,
+#next::before {
+  content: "";
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-style: solid;
+  border-width: 0.25em 0.25em 0 0;
+  border-color: #ccc;
+}
+#next::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+#prev::before {
+  transform: translate(-50%, -50%) rotate(-135deg);
+}
+#prev:hover::before,
+#next:hover::before {
+  border-color: #000;
+}
+.days {
+  font-weight: 600;
+}
+.dates li.today {
+  color: #fff;
+}
+
+li.disabled {
+  color: #ccc;
+  pointer-events: none;
+}
+
+.dates li.today::before {
+  content: "";
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #000;
+  border-radius: 50%;
+  z-index: -1;
+}
+.dates li.inactive {
+  color: #ccc;
+}
+
+.cita-resumen{
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.horarios{
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin-top: 3%;
+    border-radius: 14px;
+    border: 2px solid #ccc;
+}
+.horarios-titulo h2{
+    margin-top: 2%;
+}
+.horas-completas{
+    float: left;
+    width: 60%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+}
+.horas-completas ul{
+    max-height: 105px;
+    overflow-y: scroll;
+    padding-right: 10px;
+    margin-top: 1.5%;
+    box-sizing: border-box;
+}
+.horas-completas ul li{
+    list-style: none;
+}
+.horas-completas ul li:hover{
+    list-style: none;
+    border-radius: 13px;
+    background-color: #ccc;
+    color: #455691;
+    cursor: pointer;
+}
+.horas-completas ul li:active{
+    list-style: none;
+    border-radius: 13px;
+    background-color: #a8a5a5;
+    color: #455691;
+    cursor: pointer;
+}
+.resumen-datos{
+    float: right;
+    width: 40%;
+    height: 400px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.resumen-datos h1,.resumen-datos h2{
+    font-size: 30px;
+}
+.botonaceptar{
+    float: left;
+    width: 100%;
+    height: 10%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3.5%;
+}
+.botonaceptar button{
+    border-radius: 15px;
+    width: 40%;
+    height: 100%;
+}
+
+</style>
+
+
+<div>
+    <h1>@ViewData["Centro"]</h2>
+    <h2>Información Completa: </h2>
+    @if(ViewData["Centro"].ToString()=="Centro Sura"){
+        <p>Dirección: Calle 49A #63-146, Torre Corporativa SURA, Piso 1.</p>
+        <p>Horario: Lunes a viernes, de 7:30 a.m. a 5:00 p.m.</p>
+    }else if(ViewData["Centro"].ToString()=="Sede Poblado"){
+        <p>Dirección: Carrera 30 #10-81.</p>
+        <p>Horario: Lunes a viernes, de 7:30 a.m. a 5:00 p.m.</p>
+    }else if(ViewData["Centro"].ToString()=="Sucursal Almacentro"){
+        <p>Dirección: Carrera 43A #34-95, Centro Comercial Almacentro, Local 259.</p>
+        <p>Horario: Lunes a viernes, de 7:30 a.m. a 5:00 p.m.</p>
+    }else if(ViewData["Centro"].ToString()=="Sucursal Viva Envigado"){
+        <p>Dirección: Carrera 48 #32B Sur-139, Torre Empresarial, Piso 2.5.</p>
+        <p>Horario: Lunes a viernes, de 7:30 a.m. a 5:00 p.m.</p>
+    }else{
+        <p>Dirección: Carrera. 49 # 46–57, Centro, Bello, Antioquia</p>
+        <p>Horario: Lunes a viernes, de 7:30 a.m. a 5:00 p.m.</p>
+    }
+
+</div>
+
+<div class="calendar-father">
+<div class="calendar">
+      <header>
+        <h3></h3>
+        <nav>
+          <button id="prev"></button>
+          <button id="next"></button>
+        </nav>
+      </header>
+      <section>
+        <ul class="days">
+          <li>DOM</li>
+          <li>LUN</li>
+          <li>MAR</li>
+          <li>MIE</li>
+          <li>JUE</li>
+          <li>VIE</li>
+          <li>SAB</li>
+        </ul>
+        <ul class="dates"></ul>
+      </section>
+</div>
+</div>
+<div class="horarios" id="horarios">
+    
+   
+</div>
+<div class="botonaceptar">
+  <form action="/Home/CitaAsignada" method="post">
+    <input type="hidden" id="fechaCita" name="FechaCita">
+    <input type="hidden" id="horaCita" name="HoraCita">
+    <button type="submit">Asignar</button>
+  </form>
+</div>
+
+<script>
+const header = document.querySelector(".calendar h3");
+const dates = document.querySelector(".dates");
+const navs = document.querySelectorAll("#prev, #next");
+const fechaInput = document.getElementById("fechaCita"); 
+const horaInput = document.getElementById("horaCita");   
+
+const months = [
+  "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+  "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+];
+
+let date = new Date();
+let month = date.getMonth();
+let year = date.getFullYear();
+
+function renderCalendar() {
+  const start = new Date(year, month, 1).getDay();
+  const endDate = new Date(year, month + 1, 0).getDate();
+  const end = new Date(year, month, endDate).getDay();
+  const endDatePrev = new Date(year, month, 0).getDate();
+
+  let datesHtml = "";
+
+  for (let i = start; i > 0; i--) {
+    datesHtml += `<li class="inactive">${endDatePrev - i + 1}</li>`;
+  }
+
+  for (let i = 1; i <= endDate; i++) {
+    let className = "";
+
+    if (i === date.getDate() && month === new Date().getMonth() && year === new Date().getFullYear()) {
+      className = ' class="today"'; 
+    }
+
+    if (new Date(year, month, i) < date) {
+      className += ' class="disabled"'; 
+    }
+
+    datesHtml += `<li${className} data-day="${i}" data-month="${month}" data-year="${year}">${i}</li>`;
+  }
+
+  for (let i = end; i < 6; i++) {
+    datesHtml += `<li class="inactive">${i - end + 1}</li>`;
+  }
+
+  dates.innerHTML = datesHtml;
+  header.textContent = `${months[month]} ${year}`;
+  addClickEventToDays();
+}
+
+function addClickEventToDays() {
+  const days = dates.querySelectorAll("li:not(.inactive)");
+  days.forEach((day) => {
+    if (!day.classList.contains("disabled")) {
+      day.addEventListener("click", (e) => {
+        const selectedDay = e.target.getAttribute("data-day");
+        const selectedMonth = e.target.getAttribute("data-month");
+        const selectedYear = e.target.getAttribute("data-year");
+
+        fechaInput.value = `${selectedYear}-${parseInt(selectedMonth) + 1}-${selectedDay}`;
+
+        const seccionhoras = document.getElementById("horarios");
+        seccionhoras.innerHTML = `
+        <div class="cita-resumen" id="cita-resumen">
+          <h2>Cita para el día: ${selectedDay} de ${months[selectedMonth]} del presente ${selectedYear}</h2>
+        </div>
+        <div class="horas-completas">
+          <div class="horarios-titulo">
+            <h2 class="horastitulo">Horas Disponibles</h2>
+          </div>
+          <ul>
+            <li class="hora" data-time="9:30">9:30</li>
+            <li class="hora" data-time="10:00">10:00</li>
+            <li class="hora" data-time="10:30">10:30</li>
+            <li class="hora" data-time="11:00">11:00</li>
+            <li class="hora" data-time="11:30">11:30</li>
+            <li class="hora" data-time="12:00">12:00</li>
+            <li class="hora" data-time="12:30">12:30</li>
+            <li class="hora" data-time="13:00">13:00</li>
+            <li class="hora" data-time="13:30">13:30</li>
+            <li class="hora" data-time="14:00">14:00</li>
+            <li class="hora" data-time="14:30">14:30</li>
+            <li class="hora" data-time="15:00">15:00</li>
+            <li class="hora" data-time="15:30">15:30</li>
+            <li class="hora" data-time="16:00">16:00</li>
+          </ul>
+          <p id="hora-dela-cita" name="HoraCita"></p>
+        </div>
+        <div class="resumen-datos">
+          <h1>Resumen de sus datos: </h1>
+          <h2>Nombre Completo: @ViewBag.Nombre @ViewBag.Apellido</h2>
+          <h2>Correo: @ViewBag.Correo</h2>
+          <h2>Cedula: @ViewBag.Identificacion</h2>
+        </div>`;
+
+        const citahora = document.getElementById("hora-dela-cita");
+        const horas = document.querySelectorAll(".hora");
+        horas.forEach((hora) => {
+          hora.addEventListener("click", (e) => {
+            const cita = e.target.getAttribute("data-time");
+
+            horaInput.value = cita;
+
+            citahora.innerHTML = `Hora Seleccionada: ${cita}`;
+          });
+        });
+      });
+    }
+  });
+}
+
+navs.forEach((nav) => {
+  nav.addEventListener("click", (e) => {
+    const btnId = e.target.id;
+
+    if (btnId === "prev" && month === 0) {
+      year--;
+      month = 11;
+    } else if (btnId === "next" && month === 11) {
+      year++;
+      month = 0;
+    } else {
+      month = btnId === "next" ? month + 1 : month - 1;
+    }
+
+    renderCalendar();
+  });
+});
+
+renderCalendar();
+</script>   

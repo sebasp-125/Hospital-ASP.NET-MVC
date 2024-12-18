@@ -1,5 +1,3 @@
-@model InformationUser
-
 @{
     ViewData["Title"] = "Eps";
 }
@@ -10,19 +8,19 @@
         <div class="col-12 col-sm-6 col-md-3 mb-3">
             <button type="button" class="btn btn-primary w-100">Servicios a un Click</button>
         </div>
-        <div class="col-12 col-sm-6 col-md-3 mb-3">
+        <a asp-controller="Home" asp-action="AsignarCitaSedes" class="col-12 col-sm-6 col-md-3 mb-3">
             <button type="button" class="btn btn-primary w-100">Agendar Cita</button>
-        </div>
+        </a>
         <div class="col-12 col-sm-6 col-md-3 mb-3">
             <button type="button" class="btn btn-primary w-100">Exámenes</button>
         </div>
-        <div class="col-12 col-sm-6 col-md-3 mb-3">
+        <div href="" class="col-12 col-sm-6 col-md-3 mb-3">
             <button type="button" class="btn btn-primary w-100">Registros Pendientes</button>
         </div>
 
         <!-- Información del usuario -->
         <div class="col-12 text-start mt-4">
-            @if (Model.Genero == "Masculino")
+            @if (ViewBag.Genero == "Masculino")
             {
                 <img src="https://cdn-icons-png.flaticon.com/512/4792/4792929.png" class="img-thumbnail rounded float-end ms-3" alt="..." style="max-width: 150px;">
             }
@@ -30,9 +28,9 @@
             {
                 <img src="https://previews.123rf.com/images/djvstock/djvstock1701/djvstock170109009/70085942-perfil-de-la-mujer-sin-rostro-ic%C3%B3nico-dise%C3%B1o-gr%C3%A1fico-de-vector.jpg" class="img-thumbnail rounded float-end ms-3" alt="..." style="max-width: 150px;">
             }
-            <p class="fs-4 opacity-75 text-primary mb-1">Nombre Completo: <span class="fw-bold">@Model.NombreUsuarioI @Model.ApellidoUsuarioI</span></p>
-            <p class="fs-5 text-secondary mb-1">Correo Electrónico: <span class="fw-light">@Model.EmailUsuarioI</span></p>
-            <p class="fs-5 text-secondary">Cédula: <span class="fw-light">@Model.Identificacion</span></p>
+            <p class="fs-4 opacity-75 text-primary mb-1">Nombre Completo: <span class="fw-bold">@ViewBag.Nombre @ViewBag.Apellido</span></p>
+            <p class="fs-5 text-secondary mb-1">Correo Electrónico: <span class="fw-light">@ViewBag.Correo</span></p>
+            <p class="fs-5 text-secondary">Cédula: <span class="fw-light">@ViewBag.Identificacion</span></p>
     </div>
 
     <!-- Sección de información colapsable -->
@@ -44,13 +42,12 @@
 
         <div class="collapse mt-3" id="collapseExample">
             <div class="card card-body">
-                <p class="fs-5 text-secondary mb-1">Enfermedad: <span class="fw-light">@Model.NombreEnfermedad</span></p>
+                <p class="fs-5 text-secondary mb-1">Enfermedad: <span class="fw-light">@ViewBag.Enfermedad</span></p>
 
-                <p class="fs-5 text-secondary mb-1">Descripción: <span class="fw-light">@Model.DescripcionEnfermedad</span></p> 
-                <p>Procesos Actuales</p>
+                <p class="fs-5 text-secondary mb-1">Descripción: <span class="fw-light">@ViewBag.DescripcionEnf</span></p> 
 
-                <p class="fs-5 text-secondary mb-1">Telefono: <span class="fw-light">@Model.Telefono</span></p> 
-                <p>Procesos Actuales</p>
+                <p class="fs-5 text-secondary mb-1">Telefono: <span class="fw-light">@ViewBag.Telefono</span></p> 
+       
             </div>
         </div>
     </div>
