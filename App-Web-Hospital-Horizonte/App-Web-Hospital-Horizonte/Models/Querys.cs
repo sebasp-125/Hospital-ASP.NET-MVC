@@ -196,4 +196,45 @@ public class Querys
 
     }
 
+
+    // FUNCION PARA EXTRAER DOCTOR DE FAMILIA
+
+    public List<InformatioDoctor> Doctores()
+{
+    var listaDoctores = new List<InformatioDoctor>();
+
+    using (SqlConnection conn = new SqlConnection(_connection))
+    {
+        conn.Open();
+        string query = @"SELECT 
+                            U.Nombre AS NombreMedico,
+                            U.Apellido AS ApellidoMedico,
+                            U.Telefono,
+                            U.Email,
+                            U.DoctorID,
+                            E.Nombre AS EspecialidadMedico
+                        FROM Doctores U
+                        INNER JOIN Especialidades E ON U.EspecialidadID = E.EspecialidadID";
+
+        SqlCommand command = new SqlCommand(query, conn);
+
+        using (SqlDataReader reader = command.ExecuteReader())
+        {
+            while (reader.Read()) 
+            {
+                listaDoctores.Add(new InformatioDoctor
+                {
+                    id = reader["DoctorID"].ToString(),
+                    NombreDoctor = reader["NombreMedico"].ToString(),
+                    ApellidoDoctor = reader["ApellidoMedico"].ToString(),
+                    EspecialidadDoctor = reader["EspecialidadMedico"].ToString(),
+                    Email = reader["Email"].ToString(),
+                    Telefono = reader["Telefono"].ToString()
+                });
+            }
+        }
+    }
+    return listaDoctores; 
+}
+
 }

@@ -33,6 +33,17 @@ namespace App_Web_Hospital_Horizonte.Controllers
         //Aterrizaje del Usuario
         public IActionResult Landing()
         {
+            Querys informatioDoctor = new Querys();
+            var listaDoctores = informatioDoctor.Doctores();
+
+            Random random = new Random();
+            var MedicoAleatorio = listaDoctores[random.Next(listaDoctores.Count)];
+            var viewModel = new LandingViewModel
+            {
+                InformacionDoctores = listaDoctores,
+                MedicoDeFamilia = MedicoAleatorio
+            };
+
             string nombre = HttpContext.Session.GetString("NombreUsuario"); ViewBag.Nombre=nombre;
             string apellido = HttpContext.Session.GetString("ApellidoUsuario"); ViewBag.Apellido=apellido;
             string usuarioid = HttpContext.Session.GetString("UsuarioID"); ViewBag.UsuarioID=usuarioid;
@@ -43,7 +54,7 @@ namespace App_Web_Hospital_Horizonte.Controllers
             string identificacion = HttpContext.Session.GetString("Identificacion"); ViewBag.Identificacion = identificacion;
             string genero = HttpContext.Session.GetString("Genero"); ViewBag.Genero = genero;
 
-            return View("Main/Landing");
+            return View("Main/Landing", viewModel);
         }
         [HttpPost]
         public IActionResult RegisterUsuario(Querys model)
