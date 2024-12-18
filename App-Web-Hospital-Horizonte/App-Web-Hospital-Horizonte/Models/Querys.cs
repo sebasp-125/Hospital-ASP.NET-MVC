@@ -116,7 +116,6 @@ public class Querys
             }
         }
     }
-
     return listaDoctores; 
 }
 
